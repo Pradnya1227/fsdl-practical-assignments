@@ -8,7 +8,6 @@ This repository contains all the practical assignments completed for the **Full 
 
 * **Name:** Pradnya Wakode
 * **Class:** Final Year B.Tech Computer Engineering
-* **Division:** *(Add your division)*
 * **Subject:** Full Stack Development Lab (FSDL)
 
 ---
