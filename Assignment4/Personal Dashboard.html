@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Personal Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --cream: #FFF8F0;
+            --warm-white: #FFFBF5;
+            --terracotta: #D4735E;
+            --sage: #8B9D83;
+            --clay: #C9A88F;
+            --charcoal: #2D2D2D;
+            --soft-shadow: rgba(45, 45, 45, 0.08);
+            --accent-glow: rgba(212, 115, 94, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: linear-gradient(135deg, var(--cream) 0%, var(--warm-white) 100%);
+            color: var(--charcoal);
+            min-height: 100vh;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -20%;
+            width: 60%;
+            height: 60%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            margin-bottom: 3rem;
+            animation: slideDown 0.6s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Crimson Pro', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .date-time {
+            font-size: 1.1rem;
+            color: var(--clay);
+            font-weight: 500;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            animation: fadeIn 0.8s ease 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px var(--soft-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--terracotta), var(--sage));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px var(--soft-shadow);
+        }
+
+        .card-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--terracotta);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Mood Tracker */
+        .mood-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .mood-btn {
+            aspect-ratio: 1;
+            border: 2px solid var(--clay);
+            background: var(--warm-white);
+            border-radius: 50%;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mood-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            border-color: var(--terracotta);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        .mood-btn.selected {
+            background: var(--terracotta);
+            border-color: var(--terracotta);
+            transform: scale(1.15);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* Habit Tracker */
+        .habit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .habit-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--warm-white);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .habit-item:hover {
+            background: white;
+            transform: translateX(4px);
+        }
+
+        .habit-checkbox {
+            width: 28px;
+            height: 28px;
+            border: 2px solid var(--sage);
+            border-radius: 8px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .habit-checkbox:hover {
+            border-color: var(--terracotta);
+            transform: rotate(5deg);
+        }
+
+        .habit-checkbox.checked {
+            background: var(--sage);
+            border-color: var(--sage);
+        }
+
+        .habit-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .habit-name {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .habit-streak {
+            background: var(--terracotta);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .add-habit {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .add-habit input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--clay);
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            background: var(--warm-white);
+            transition: all 0.3s ease;
+        }
+
+        .add-habit input:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            background: white;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--terracotta);
+            color: white;
+        }
+
+        .btn:hover {
+            background: var(--sage);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px var(--accent-glow);
+        }
+
+        /* Tasks */
+        .task-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 0.5rem;
+        }
+
+        .task-list::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .task-list::-webkit-scrollbar-track {
+            background: var(--warm-white);
+            border-radius: 3px;
+        }
+
+        .task-list::-webkit-scrollbar-thumb {
+            background: var(--clay);
+            border-radius: 3px;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: var(--warm-white);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .task-item:hover {
+            background: white;
+        }
+
+        .task-item.completed {
+            opacity: 0.6;
+        }
+
+        .task-item.completed .task-text {
+            text-decoration: line-through;
+        }
+
+        .task-checkbox {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--sage);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .task-checkbox.checked {
+            background: var(--sage);
+        }
+
+        .task-checkbox.checked::after {
+            content: '✓';
+            position: absolute;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .task-text {
+            flex: 1;
+        }
+
+        .task-delete {
+            color: var(--terracotta);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-weight: bold;
+        }
+
+        .task-item:hover .task-delete {
+            opacity: 1;
+        }
+
+        /* Notes */
+        .note-input {
+            width: 100%;
+            min-height: 200px;
+            padding: 1rem;
+            border: 2px solid var(--clay);
+            border-radius: 12px;
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            background: var(--warm-white);
+            resize: vertical;
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+
+        .note-input:focus {
+            outline: none;
+            border-color: var(--terracotta);
+            background: white;
+        }
+
+        /* Chart */
+        .chart-container {
+            position: relative;
+            height: 250px;
+            margin-top: 1rem;
+        }
+
+        /* Wide cards */
+        .card-wide {
+            grid-column: span 2;
+        }
+
+        @media (max-width: 1024px) {
+            .card-wide {
+                grid-column: span 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mood-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .stat-card {
+            background: var(--warm-white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            background: white;
+            transform: translateY(-2px);
+        }
+
+        .stat-number {
+            font-family: 'Crimson Pro', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--terracotta);
+            display: block;
+        }
+
+        .stat-label {
+            color: var(--clay);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+    
+
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .insight-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.4rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(212, 115, 94, 0.12);
+            color: var(--terracotta);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .mini-meta {
+            color: var(--clay);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .planner-card {
+            min-height: 330px;
+        }
+
+        .planner-card canvas,
+        .chart-container {
+            position: relative;
+            height: 220px;
+        }
+
+        .planner-note {
+            margin-top: 0.9rem;
+            color: var(--clay);
+            font-size: 0.92rem;
+        }
+
+        .status-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 0.8rem;
+        }
+
+        .status-chip {
+            background: var(--warm-white);
+            border: 1px solid rgba(201, 168, 143, 0.5);
+            border-radius: 14px;
+            padding: 0.7rem 0.9rem;
+            min-width: 120px;
+        }
+
+        .status-chip strong {
+            display: block;
+            color: var(--terracotta);
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .status-chip span {
+            color: var(--clay);
+            font-size: 0.85rem;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Day</h1>
+            <div class="date-time" id="dateTime"></div>
+        </header>
+
+        <div class="grid">
+            <!-- Mood Tracker -->
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">🌸</span> How are you feeling?</h2>
+                <div class="mood-grid">
+                    <button class="mood-btn" data-mood="amazing" title="Amazing">🤩</button>
+                    <button class="mood-btn" data-mood="happy" title="Happy">😊</button>
+                    <button class="mood-btn" data-mood="okay" title="Okay">😐</button>
+                    <button class="mood-btn" data-mood="sad" title="Sad">😔</button>
+                    <button class="mood-btn" data-mood="stressed" title="Stressed">😰</button>
+                </div>
+                <div class="chart-container">
+                    <canvas id="moodChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Habit Tracker -->
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">🌱</span> Daily Habits</h2>
+                <div class="habit-list" id="habitList"></div>
+                <div class="add-habit">
+                    <input type="text" id="newHabit" placeholder="Add a new habit...">
+                    <button class="btn" onclick="addHabit()">Add</button>
+                </div>
+            </div>
+
+            <!-- Tasks -->
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">✓</span> Today's Tasks</h2>
+                <div class="task-list" id="taskList"></div>
+                <div class="add-habit">
+                    <input type="text" id="newTask" placeholder="Add a new task...">
+                    <button class="btn" onclick="addTask()">Add</button>
+                </div>
+            </div>
+
+            <!-- Notes -->
+            <div class="card">
+                <h2 class="card-title"><span class="card-icon">📝</span> Quick Notes</h2>
+                <textarea class="note-input" id="notes" placeholder="Write your thoughts here..."></textarea>
+            </div>
+
+
+            <!-- Day Planning Insights -->
+            <div class="card card-wide">
+                <h2 class="card-title"><span class="card-icon">✨</span> Day Planning Insights</h2>
+                <div class="insight-pill">Live data aligned to your daily dashboard</div>
+                <div class="insight-grid">
+                    <div class="planner-card">
+                        <div class="mini-meta" id="weatherSummary">Checking your local weather to help plan tasks...</div>
+                        <div class="chart-container"><canvas id="weatherFocusChart"></canvas></div>
+                        <div class="planner-note">Best for deciding outdoor tasks, commute timing, and active hours.</div>
+                    </div>
+                    <div class="planner-card">
+                        <div class="mini-meta" id="comfortSummary">Loading comfort conditions for the next few hours...</div>
+                        <div class="chart-container"><canvas id="comfortChart"></canvas></div>
+                        <div class="planner-note">Useful for hydration, workout timing, and energy planning.</div>
+                    </div>
+                    <div class="planner-card">
+                        <div class="mini-meta" id="timeSummary">Syncing live time to map your remaining day...</div>
+                        <div class="chart-container"><canvas id="dayProgressChart"></canvas></div>
+                        <div class="status-row">
+                            <div class="status-chip"><strong id="localTimeNow">--:--</strong><span>Local time</span></div>
+                            <div class="status-chip"><strong id="hoursLeftToday">--</strong><span>Hours left today</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Overview -->
+            <div class="card card-wide">
+                <h2 class="card-title"><span class="card-icon">📊</span> Your Progress</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number" id="tasksCompleted">0</span>
+                        <div class="stat-label">Tasks Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="habitsStreak">0</span>
+                        <div class="stat-label">Longest Streak</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="moodAverage">—</span>
+                        <div class="stat-label">Mood This Week</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize storage and data
+        let moodHistory = [];
+        let habits = [];
+        let tasks = [];
+        let moodChart = null;
+
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('dateTime').textContent = now.toLocaleDateString('en-US', options);
+        }
+
+        // Load data from storage
+        async function loadData() {
+            try {
+                // Load mood history
+                const moodResult = await window.storage.get('mood-history', false);
+                if (moodResult) {
+                    moodHistory = JSON.parse(moodResult.value);
+                }
+
+                // Load habits
+                const habitsResult = await window.storage.get('habits', false);
+                if (habitsResult) {
+                    habits = JSON.parse(habitsResult.value);
+                }
+
+                // Load tasks
+                const tasksResult = await window.storage.get('tasks', false);
+                if (tasksResult) {
+                    tasks = JSON.parse(tasksResult.value);
+                }
+
+                // Load notes
+                const notesResult = await window.storage.get('notes', false);
+                if (notesResult) {
+                    document.getElementById('notes').value = notesResult.value;
+                }
+
+                renderAll();
+            } catch (error) {
+                console.log('No saved data found, starting fresh');
+                initializeSampleData();
+            }
+        }
+
+        // Initialize with sample data
+        function initializeSampleData() {
+            habits = [
+                { id: 1, name: 'Morning meditation', checked: false, streak: 5 },
+                { id: 2, name: 'Drink 8 glasses of water', checked: false, streak: 3 },
+                { id: 3, name: 'Exercise 30 min', checked: false, streak: 7 }
+            ];
+
+            tasks = [
+                { id: 1, text: 'Review project proposal', completed: false },
+                { id: 2, text: 'Call dentist for appointment', completed: false },
+                { id: 3, text: 'Grocery shopping', completed: false }
+            ];
+
+            moodHistory = generateSampleMoodData();
+            renderAll();
+        }
+
+        // Generate sample mood data for the past week
+        function generateSampleMoodData() {
+            const moods = ['amazing', 'happy', 'okay', 'sad', 'stressed'];
+            const data = [];
+            for (let i = 6; i >= 0; i--) {
+                const date = new Date();
+                date.setDate(date.getDate() - i);
+                data.push({
+                    date: date.toISOString().split('T')[0],
+                    mood: moods[Math.floor(Math.random() * moods.length)]
+                });
+            }
+            return data;
+        }
+
+        // Save data to storage
+        async function saveData() {
+            try {
+                await window.storage.set('mood-history', JSON.stringify(moodHistory), false);
+                await window.storage.set('habits', JSON.stringify(habits), false);
+                await window.storage.set('tasks', JSON.stringify(tasks), false);
+            } catch (error) {
+                console.error('Error saving data:', error);
+            }
+        }
+
+        // Mood tracker
+        document.querySelectorAll('.mood-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mood-btn').forEach(b => b.classList.remove('selected'));
+                this.classList.add('selected');
+                
+                const mood = this.dataset.mood;
+                const today = new Date().toISOString().split('T')[0];
+                
+                // Update or add today's mood
+                const existingIndex = moodHistory.findIndex(m => m.date === today);
+                if (existingIndex >= 0) {
+                    moodHistory[existingIndex].mood = mood;
+                } else {
+                    moodHistory.push({ date: today, mood });
+                }
+                
+                // Keep only last 30 days
+                if (moodHistory.length > 30) {
+                    moodHistory = moodHistory.slice(-30);
+                }
+                
+                updateMoodChart();
+                updateStats();
+                saveData();
+            });
+        });
+
+        // Initialize mood chart
+        function initMoodChart() {
+            const ctx = document.getElementById('moodChart').getContext('2d');
+            
+            moodChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Mood',
+                        data: [],
+                        borderColor: '#D4735E',
+                        backgroundColor: 'rgba(212, 115, 94, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointHoverRadius: 8,
+                        pointBackgroundColor: '#D4735E',
+                        pointBorderColor: '#FFF',
+                        pointBorderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            ticks: {
+                                stepSize: 1,
+                                callback: function(value) {
+                                    const moodLabels = ['', '😰', '😔', '😐', '😊', '🤩'];
+                                    return moodLabels[value] || '';
+                                }
+                            },
+                            grid: {
+                                color: 'rgba(139, 157, 131, 0.1)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    }
+                }
+            });
+            
+            updateMoodChart();
+        }
+
+        // Update mood chart
+        function updateMoodChart() {
+            const moodValues = {
+                'stressed': 1,
+                'sad': 2,
+                'okay': 3,
+                'happy': 4,
+                'amazing': 5
+            };
+
+            const last7Days = moodHistory.slice(-7);
+            const labels = last7Days.map(m => {
+                const date = new Date(m.date);
+                return date.toLocaleDateString('en-US', { weekday: 'short' });
+            });
+            const data = last7Days.map(m => moodValues[m.mood] || 0);
+
+            if (moodChart) {
+                moodChart.data.labels = labels;
+                moodChart.data.datasets[0].data = data;
+                moodChart.update();
+            }
+
+            // Highlight today's mood
+            const today = new Date().toISOString().split('T')[0];
+            const todayMood = moodHistory.find(m => m.date === today);
+            if (todayMood) {
+                document.querySelectorAll('.mood-btn').forEach(btn => {
+                    if (btn.dataset.mood === todayMood.mood) {
+                        btn.classList.add('selected');
+                    }
+                });
+            }
+        }
+
+        // Render habits
+        function renderHabits() {
+            const habitList = document.getElementById('habitList');
+            habitList.innerHTML = habits.map(habit => `
+                <div class="habit-item">
+                    <div class="habit-checkbox ${habit.checked ? 'checked' : ''}" onclick="toggleHabit(${habit.id})"></div>
+                    <div class="habit-name">${habit.name}</div>
+                    <div class="habit-streak">🔥 ${habit.streak}</div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle habit
+        function toggleHabit(id) {
+            const habit = habits.find(h => h.id === id);
+            if (habit) {
+                habit.checked = !habit.checked;
+                if (habit.checked) {
+                    habit.streak++;
+                }
+                renderHabits();
+                updateStats();
+                saveData();
+            }
+        }
+
+        // Add habit
+        function addHabit() {
+            const input = document.getElementById('newHabit');
+            const name = input.value.trim();
+            
+            if (name) {
+                habits.push({
+                    id: Date.now(),
+                    name,
+                    checked: false,
+                    streak: 0
+                });
+                input.value = '';
+                renderHabits();
+                saveData();
+            }
+        }
+
+        // Render tasks
+        function renderTasks() {
+            const taskList = document.getElementById('taskList');
+            taskList.innerHTML = tasks.map(task => `
+                <div class="task-item ${task.completed ? 'completed' : ''}">
+                    <div class="task-checkbox ${task.completed ? 'checked' : ''}" onclick="toggleTask(${task.id})"></div>
+                    <div class="task-text">${task.text}</div>
+                    <div class="task-delete" onclick="deleteTask(${task.id})">✕</div>
+                </div>
+            `).join('');
+        }
+
+        // Toggle task
+        function toggleTask(id) {
+            const task = tasks.find(t => t.id === id);
+            if (task) {
+                task.completed = !task.completed;
+                renderTasks();
+                updateStats();
+                saveData();
+            }
+        }
+
+        // Delete task
+        function deleteTask(id) {
+            tasks = tasks.filter(t => t.id !== id);
+            renderTasks();
+            updateStats();
+            saveData();
+        }
+
+        // Add task
+        function addTask() {
+            const input = document.getElementById('newTask');
+            const text = input.value.trim();
+            
+            if (text) {
+                tasks.push({
+                    id: Date.now(),
+                    text,
+                    completed: false
+                });
+                input.value = '';
+                renderTasks();
+                saveData();
+            }
+        }
+
+        // Handle Enter key for inputs
+        document.getElementById('newHabit').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addHabit();
+        });
+
+        document.getElementById('newTask').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') addTask();
+        });
+
+        // Save notes
+        document.getElementById('notes').addEventListener('input', async function() {
+            try {
+                await window.storage.set('notes', this.value, false);
+            } catch (error) {
+                console.error('Error saving notes:', error);
+            }
+        });
+
+        // Update stats
+        function updateStats() {
+            const completedTasks = tasks.filter(t => t.completed).length;
+            document.getElementById('tasksCompleted').textContent = completedTasks;
+
+            const maxStreak = habits.length > 0 ? Math.max(...habits.map(h => h.streak)) : 0;
+            document.getElementById('habitsStreak').textContent = maxStreak;
+
+            const moodValues = {
+                'stressed': 1,
+                'sad': 2,
+                'okay': 3,
+                'happy': 4,
+                'amazing': 5
+            };
+            
+            const last7Days = moodHistory.slice(-7);
+            if (last7Days.length > 0) {
+                const avgMood = last7Days.reduce((sum, m) => sum + (moodValues[m.mood] || 0), 0) / last7Days.length;
+                const moodEmojis = ['😰', '😔', '😐', '😊', '🤩'];
+                document.getElementById('moodAverage').textContent = moodEmojis[Math.round(avgMood) - 1] || '—';
+            }
+        }
+
+
+        let weatherFocusChart = null;
+        let comfortChart = null;
+        let dayProgressChart = null;
+
+        function buildBaseChartOptions() {
+            return {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        labels: {
+                            usePointStyle: true,
+                            boxWidth: 8,
+                            color: '#8B9D83',
+                            font: { family: 'DM Sans', size: 12 }
+                        }
+                    }
+                },
+                scales: {
+                    x: { grid: { display: false }, ticks: { color: '#8B9D83' } },
+                    y: { grid: { color: 'rgba(139,157,131,0.10)' }, ticks: { color: '#8B9D83' } }
+                }
+            };
+        }
+
+        function ensurePlannerCharts() {
+            if (!weatherFocusChart) {
+                weatherFocusChart = new Chart(document.getElementById('weatherFocusChart').getContext('2d'), {
+                    type: 'line',
+                    data: { labels: [], datasets: [{ label: 'Temperature °C', data: [], borderColor: '#D4735E', backgroundColor: 'rgba(212, 115, 94, 0.12)', fill: true, tension: 0.35, pointRadius: 4, pointBackgroundColor: '#D4735E' }] },
+                    options: buildBaseChartOptions()
+                });
+            }
+            if (!comfortChart) {
+                comfortChart = new Chart(document.getElementById('comfortChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: [],
+                        datasets: [
+                            { label: 'Humidity %', data: [], backgroundColor: 'rgba(139, 157, 131, 0.75)', borderRadius: 10 },
+                            { label: 'Rain %', data: [], backgroundColor: 'rgba(212, 115, 94, 0.55)', borderRadius: 10 }
+                        ]
+                    },
+                    options: buildBaseChartOptions()
+                });
+            }
+            if (!dayProgressChart) {
+                dayProgressChart = new Chart(document.getElementById('dayProgressChart').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Day gone', 'Day left'],
+                        datasets: [{ data: [0, 24], backgroundColor: ['rgba(212,115,94,0.85)', 'rgba(139,157,131,0.22)'], borderWidth: 0, hoverOffset: 4 }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        cutout: '72%',
+                        plugins: { legend: { position: 'bottom', labels: { usePointStyle: true, color: '#8B9D83', font: { family: 'DM Sans' } } } }
+                    }
+                });
+            }
+        }
+
+        async function loadPlannerInsights() {
+            ensurePlannerCharts();
+            await Promise.all([loadWeatherInsights(), loadTimeInsights()]);
+        }
+
+        async function loadWeatherInsights() {
+            const fallback = {
+                labels: ['Now', '+1h', '+2h', '+3h', '+4h', '+5h'],
+                temps: [27, 28, 29, 29, 28, 27],
+                humidity: [55, 58, 60, 62, 59, 57],
+                rain: [5, 10, 20, 15, 10, 5],
+                summary: 'Live weather unavailable, so showing a calm default planning view.',
+                comfort: 'Comfort view is using fallback values right now.'
+            };
+
+            try {
+                const position = await new Promise((resolve, reject) => {
+                    if (!navigator.geolocation) reject(new Error('No geolocation'));
+                    navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 10000 });
+                });
+
+                const { latitude, longitude } = position.coords;
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m,relative_humidity_2m,precipitation_probability&forecast_days=1`;
+                const response = await fetch(url);
+                const data = await response.json();
+                if (!data.hourly || !data.hourly.time) throw new Error('Incomplete weather data');
+
+                const now = new Date();
+                const index = data.hourly.time.findIndex(t => new Date(t) >= now);
+                const start = index >= 0 ? index : 0;
+                const end = Math.min(start + 6, data.hourly.time.length);
+                const labels = data.hourly.time.slice(start, end).map(t => new Date(t).toLocaleTimeString([], { hour: 'numeric' }));
+                const temps = data.hourly.temperature_2m.slice(start, end);
+                const humidity = data.hourly.relative_humidity_2m.slice(start, end);
+                const rain = data.hourly.precipitation_probability.slice(start, end);
+
+                weatherFocusChart.data.labels = labels;
+                weatherFocusChart.data.datasets[0].data = temps;
+                weatherFocusChart.update();
+
+                comfortChart.data.labels = labels;
+                comfortChart.data.datasets[0].data = humidity;
+                comfortChart.data.datasets[1].data = rain;
+                comfortChart.update();
+
+                const maxTemp = Math.max(...temps);
+                const rainPeak = Math.max(...rain);
+                document.getElementById('weatherSummary').textContent = `Next few hours: around ${temps[0]}°C now, peaking near ${maxTemp}°C. Great for planning when to step out.`;
+                document.getElementById('comfortSummary').textContent = `Humidity is around ${humidity[0]}% now and rain chance can go up to ${rainPeak}% later.`;
+                return;
+            } catch (error) {
+                weatherFocusChart.data.labels = fallback.labels;
+                weatherFocusChart.data.datasets[0].data = fallback.temps;
+                weatherFocusChart.update();
+
+                comfortChart.data.labels = fallback.labels;
+                comfortChart.data.datasets[0].data = fallback.humidity;
+                comfortChart.data.datasets[1].data = fallback.rain;
+                comfortChart.update();
+
+                document.getElementById('weatherSummary').textContent = fallback.summary;
+                document.getElementById('comfortSummary').textContent = fallback.comfort;
+            }
+        }
+
+        async function loadTimeInsights() {
+            ensurePlannerCharts();
+            try {
+                const response = await fetch('https://worldtimeapi.org/api/ip');
+                const data = await response.json();
+                const now = data.datetime ? new Date(data.datetime) : new Date();
+                updateDayProgress(now);
+            } catch (error) {
+                updateDayProgress(new Date());
+            }
+        }
+
+        function updateDayProgress(now) {
+            const hoursPassed = now.getHours() + (now.getMinutes() / 60);
+            const hoursLeft = Math.max(0, 24 - hoursPassed);
+            dayProgressChart.data.datasets[0].data = [hoursPassed.toFixed(2), hoursLeft.toFixed(2)];
+            dayProgressChart.update();
+
+            document.getElementById('localTimeNow').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            document.getElementById('hoursLeftToday').textContent = hoursLeft.toFixed(1);
+            document.getElementById('timeSummary').textContent = `${hoursLeft.toFixed(1)} hours are still left in your day. A good time to decide what deserves your energy next.`;
+        }
+
+        // Render all
+        function renderAll() {
+            renderHabits();
+            renderTasks();
+            updateStats();
+            if (!moodChart) {
+                initMoodChart();
+            } else {
+                updateMoodChart();
+            }
+        }
+
+        // Initialize
+        updateDateTime();
+        setInterval(updateDateTime, 60000); // Update time every minute
+        loadData();
+        loadPlannerInsights();
+        setInterval(loadTimeInsights, 60000);
+    </script>
+</body>
+</html>

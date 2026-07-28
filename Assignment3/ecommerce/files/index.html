@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambitions - Fashion E-Commerce</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- Login Page -->
+    <div id="loginPage" class="page-section active">
+        <div class="stripe-background"></div>
+        <div class="container">
+            <div class="row justify-content-center align-items-center min-vh-100">
+                <div class="col-md-6 col-lg-5">
+                    <div class="login-card">
+                        <div class="text-center mb-4">
+                            <h1 class="brand-logo">Ambitions</h1>
+                            <p class="brand-tagline">Helping You Build, Grow and Thrive</p>
+                        </div>
+                        
+                        <div class="auth-tabs mb-4">
+                            <button class="auth-tab active" data-tab="login">Login</button>
+                            <button class="auth-tab" data-tab="signup">Sign Up</button>
+                        </div>
+                        
+                        <!-- Login Form -->
+                        <form id="loginForm" class="auth-form active">
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" required>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="rememberMe">
+                                <label class="form-check-label" for="rememberMe">Remember me</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Login</button>
+                            <div class="text-center">
+                                <a href="#" class="text-muted small">Forgot Password?</a>
+                            </div>
+                        </form>
+                        
+                        <!-- Signup Form -->
+                        <form id="signupForm" class="auth-form">
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Confirm Password</label>
+                                <input type="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Create Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <nav id="mainNav" class="navbar navbar-expand-lg navbar-light bg-white sticky-top" style="display: none;">
+        <div class="container">
+            <a class="navbar-brand" href="#">Ambitions</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" data-page="home">HOME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="shop">SHOP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="about">ABOUT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="services">SERVICES</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="blog">BLOG</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-page="contact">CONTACT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="cartIcon">
+                            <i class="fas fa-shopping-bag"></i>
+                            <span class="cart-count">0</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="homePage" class="page-section">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="stripe-background-hero"></div>
+            <div class="container">
+                <div class="row align-items-center min-vh-100">
+                    <div class="col-lg-6">
+                        <div class="hero-image">
+                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=600" alt="Fashion Model">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-content">
+                            <h1 class="hero-title">Ambitions</h1>
+                            <h2 class="hero-subtitle">Helping You<br>BUILD, GROW<br>AND THRIVE.</h2>
+                            <p class="hero-tagline">BYWORKAHOLIC BRAND</p>
+                            <button class="btn btn-hero" data-page="shop">LEARN MORE ABOUT US</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Collections -->
+        <section class="py-5">
+            <div class="container">
+                <h2 class="section-title text-center mb-5">Featured Collections</h2>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="collection-card">
+                            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400" alt="Winter Collection">
+                            <div class="collection-overlay">
+                                <h3>Winter 2024</h3>
+                                <button class="btn btn-light" data-page="shop">Shop Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="collection-card">
+                            <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=400" alt="Casual Wear">
+                            <div class="collection-overlay">
+                                <h3>Casual Elegance</h3>
+                                <button class="btn btn-light" data-page="shop">Shop Now</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="collection-card">
+                            <img src="https://images.unsplash.com/photo-1558769132-cb1aea1c8347?w=400" alt="Formal Wear">
+                            <div class="collection-overlay">
+                                <h3>Formal Chic</h3>
+                                <button class="btn btn-light" data-page="shop">Shop Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Shop Page -->
+    <div id="shopPage" class="page-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-5">Our Collection</h2>
+            
+            <!-- Filters -->
+            <div class="row mb-4">
+                <div class="col-md-12">
+                    <div class="filter-bar">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="dresses">Dresses</button>
+                        <button class="filter-btn" data-filter="tops">Tops</button>
+                        <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+                        <button class="filter-btn" data-filter="outerwear">Outerwear</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="row g-4" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div class="modal fade" id="productModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img id="modalProductImage" src="" alt="" class="img-fluid rounded">
+                        </div>
+                        <div class="col-md-6">
+                            <h3 id="modalProductName" class="mb-3"></h3>
+                            <h4 id="modalProductPrice" class="text-primary mb-3"></h4>
+                            <p id="modalProductDescription" class="mb-4"></p>
+                            
+                            <div class="mb-3">
+                                <label class="form-label">Size</label>
+                                <select class="form-select" id="sizeSelect">
+                                    <option>XS</option>
+                                    <option selected>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="quantityInput" value="1" min="1">
+                            </div>
+                            
+                            <button class="btn btn-primary w-100" id="addToCartBtn">
+                                <i class="fas fa-shopping-bag me-2"></i>Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h4>Shopping Cart</h4>
+            <button class="btn-close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-body" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button class="btn btn-primary w-100 mb-2">Checkout</button>
+            <button class="btn btn-outline-secondary w-100" id="closeCart2">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- Other Pages (Placeholders) -->
+    <div id="aboutPage" class="page-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-4">About Us</h2>
+            <p class="text-center">Content coming soon...</p>
+        </div>
+    </div>
+
+    <div id="servicesPage" class="page-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-4">Our Services</h2>
+            <p class="text-center">Content coming soon...</p>
+        </div>
+    </div>
+
+    <div id="blogPage" class="page-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-4">Blog</h2>
+            <p class="text-center">Content coming soon...</p>
+        </div>
+    </div>
+
+    <div id="contactPage" class="page-section">
+        <div class="container py-5">
+            <h2 class="section-title text-center mb-4">Contact Us</h2>
+            <p class="text-center">Content coming soon...</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-5" style="display: none;">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5>Ambitions</h5>
+                    <p>Helping you build, grow and thrive.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5>Follow Us</h5>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <p class="text-center mb-0">&copy; 2024 Ambitions. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

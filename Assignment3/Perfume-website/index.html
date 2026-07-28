@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Palais Parfum — Perfume Store</title>
+
+  <!-- Bootstrap CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <!-- Google Font (optional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Top notice -->
+  <div class="top-marquee">
+    <div class="container d-flex justify-content-between align-items-center py-2">
+      <div class="small text-uppercase letterwide">Free shipping above ₹999</div>
+      <div class="small letterwide">✨ New: Citrus Royale • Mint Oud • Garden Musk</div>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg palace-nav sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+        <span class="brand-crest">PP</span>
+        <span class="brand-name">Palais Parfum</span>
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="#collections">Collections</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bestsellers">Bestsellers</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">Our House</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          <li class="nav-item ms-lg-2">
+            <button class="btn btn-ghost" id="openCartBtn" type="button">
+              Cart <span class="badge-soft" id="cartCount">0</span>
+            </button>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button class="btn btn-gold" id="openSearchBtn" type="button">Search</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-frame">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <p class="hero-kicker">A palace of scent</p>
+            <h1 class="hero-title">
+              Lemon-Green <span class="highlight">Luxury</span>, Bottled.
+            </h1>
+            <p class="hero-sub">
+              Explore elegant fragrances with fresh citrus notes, green florals, and warm royal woods —
+              curated like a grand hall of treasures.
+            </p>
+
+            <div class="d-flex flex-wrap gap-2 mt-3">
+              <a class="btn btn-gold btn-lg" href="#bestsellers">Shop Bestsellers</a>
+              <a class="btn btn-ghost btn-lg" href="#collections">Browse Collections</a>
+            </div>
+
+            <div class="hero-stats mt-4">
+              <div class="stat">
+                <div class="stat-num">24h</div>
+                <div class="stat-label">Dispatch</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">50+</div>
+                <div class="stat-label">Perfumes</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4.8★</div>
+                <div class="stat-label">Rated</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="hero-showcase">
+              <div class="bottle bottle-1">
+                <div class="cap"></div>
+                <div class="label">
+                  <div class="label-title">Citrus Royale</div>
+                  <div class="label-sub">Eau de Parfum</div>
+                </div>
+              </div>
+
+              <div class="bottle bottle-2">
+                <div class="cap"></div>
+                <div class="label">
+                  <div class="label-title">Garden Musk</div>
+                  <div class="label-sub">Eau de Parfum</div>
+                </div>
+              </div>
+
+              <div class="arch arch-left"></div>
+              <div class="arch arch-right"></div>
+
+              <div class="floating-card">
+                <div class="small text-uppercase letterwide">Today’s Deal</div>
+                <div class="deal-line">Buy 2, get 10% off</div>
+                <div class="small muted">Auto-applied at checkout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-border"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Collections -->
+  <section class="section" id="collections">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <h2 class="section-title">Royal Collections</h2>
+          <p class="section-sub">Pick a mood — citrus, floral, woody, or fresh green.</p>
+        </div>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-md-6 col-lg-3">
+          <div class="palace-card">
+            <div class="card-ornament">🍋</div>
+            <h3 class="card-title">Citrus Court</h3>
+            <p class="card-text">Lemon zest, bergamot, neroli — bright and crisp.</p>
+            <a href="#bestsellers" class="card-link">Shop Citrus →</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="palace-card">
+            <div class="card-ornament">🌿</div>
+            <h3 class="card-title">Green Gallery</h3>
+            <p class="card-text">Green tea, basil, fig leaf — airy and modern.</p>
+            <a href="#bestsellers" class="card-link">Shop Green →</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="palace-card">
+            <div class="card-ornament">🌸</div>
+            <h3 class="card-title">Floral Hall</h3>
+            <p class="card-text">Jasmine, peony, rose — soft, elegant, timeless.</p>
+            <a href="#bestsellers" class="card-link">Shop Floral →</a>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="palace-card">
+            <div class="card-ornament">🪵</div>
+            <h3 class="card-title">Oud Chamber</h3>
+            <p class="card-text">Oud, amber, cedar — warm, royal, long-lasting.</p>
+            <a href="#bestsellers" class="card-link">Shop Oud →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestsellers + Filters -->
+  <section class="section section-alt" id="bestsellers">
+    <div class="container">
+      <div class="section-head align-items-end">
+        <div>
+          <h2 class="section-title">Bestsellers</h2>
+          <p class="section-sub">Filter by vibe, then add to cart.</p>
+        </div>
+
+        <div class="filters">
+          <div class="input-group input-group-sm palace-input">
+            <span class="input-group-text">Sort</span>
+            <select class="form-select" id="sortSelect">
+              <option value="featured">Featured</option>
+              <option value="priceLow">Price: Low → High</option>
+              <option value="priceHigh">Price: High → Low</option>
+              <option value="rating">Rating</option>
+            </select>
+          </div>
+
+          <div class="btn-group btn-group-sm" role="group" aria-label="Filter">
+            <button class="btn btn-filter active" data-filter="all">All</button>
+            <button class="btn btn-filter" data-filter="citrus">Citrus</button>
+            <button class="btn btn-filter" data-filter="green">Green</button>
+            <button class="btn btn-filter" data-filter="floral">Floral</button>
+            <button class="btn btn-filter" data-filter="oud">Oud</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-3" id="productGrid">
+        <!-- JS renders products here -->
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="palace-panel">
+        <div class="row g-4 align-items-center">
+          <div class="col-lg-6">
+            <h2 class="section-title mb-2">Our House</h2>
+            <p class="section-sub mb-3">We craft modern perfumes inspired by palace gardens and sunlit courtyards.</p>
+            <ul class="palace-list">
+              <li><span class="dot"></span>Premium blends (EDP) for longer wear</li>
+              <li><span class="dot"></span>Fresh lemon + green notes as signature</li>
+              <li><span class="dot"></span>Gift-ready boxes with off-white borders</li>
+            </ul>
+            <div class="d-flex gap-2 mt-3">
+              <a class="btn btn-gold" href="#contact">Visit Boutique</a>
+              <button class="btn btn-ghost" id="openNewsletterBtn">Join Newsletter</button>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="gallery-grid">
+              <div class="gallery-tile tile-1"></div>
+              <div class="gallery-tile tile-2"></div>
+              <div class="gallery-tile tile-3"></div>
+              <div class="gallery-tile tile-4"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-alt" id="contact">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <h2 class="section-title">Contact</h2>
+          <p class="section-sub">Ask for recommendations — citrus, green, floral, or oud.</p>
+
+          <form class="palace-form" id="contactForm">
+            <div class="row g-2">
+              <div class="col-md-6">
+                <label class="form-label">Name</label>
+                <input class="form-control" required placeholder="Your name" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Email</label>
+                <input class="form-control" type="email" required placeholder="you@example.com" />
+              </div>
+              <div class="col-12">
+                <label class="form-label">Message</label>
+                <textarea class="form-control" rows="4" required placeholder="What kind of scent do you like?"></textarea>
+              </div>
+              <div class="col-12 d-flex gap-2 align-items-center">
+                <button class="btn btn-gold" type="submit">Send</button>
+                <span class="small muted" id="contactStatus"></span>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="palace-panel h-100">
+            <h3 class="card-title mb-2">Boutique Hours</h3>
+            <p class="card-text mb-3">Mon–Sat • 11:00 AM – 8:00 PM</p>
+
+            <div class="palace-mini">
+              <div class="mini-row">
+                <div class="mini-label">Address</div>
+                <div class="mini-value">The Green Courtyard, Pune</div>
+              </div>
+              <div class="mini-row">
+                <div class="mini-label">Phone</div>
+                <div class="mini-value">+91 90000 00000</div>
+              </div>
+              <div class="mini-row">
+                <div class="mini-label">Email</div>
+                <div class="mini-value">hello@palaisparfum.com</div>
+              </div>
+            </div>
+
+            <div class="mt-3 small muted">
+              Tip: Try a discovery set before committing to a full bottle.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container py-4">
+      <div class="d-flex flex-column flex-md-row justify-content-between gap-3 align-items-md-center">
+        <div class="d-flex align-items-center gap-2">
+          <span class="brand-crest small">PP</span>
+          <div>
+            <div class="brand-name small">Palais Parfum</div>
+            <div class="muted small">© <span id="year"></span> All rights reserved</div>
+          </div>
+        </div>
+        <div class="muted small d-flex gap-3">
+          <a class="footer-link" href="#collections">Collections</a>
+          <a class="footer-link" href="#bestsellers">Shop</a>
+          <a class="footer-link" href="#about">About</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SEARCH MODAL -->
+  <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content palace-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Search perfumes</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <input id="searchInput" class="form-control" placeholder="Type: citrus, musk, oud..." />
+          <div class="small muted mt-2">Try “lemon” or “green tea”.</div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-gold" id="runSearchBtn">Search</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEWSLETTER MODAL -->
+  <div class="modal fade" id="newsletterModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content palace-modal">
+        <div class="modal-header">
+          <h5 class="modal-title">Join newsletter</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <label class="form-label">Email</label>
+          <input id="newsletterEmail" class="form-control" type="email" placeholder="you@example.com" />
+          <div class="small muted mt-2">Monthly drops + secret deals.</div>
+          <div class="small" id="newsletterStatus"></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-ghost" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-gold" id="joinNewsletterBtn">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART OFFCANVAS -->
+  <div class="offcanvas offcanvas-end palace-canvas" tabindex="-1" id="cartCanvas">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Your Cart</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body d-flex flex-column gap-3">
+      <div id="cartItems" class="d-flex flex-column gap-2"></div>
+
+      <div class="cart-summary mt-auto">
+        <div class="d-flex justify-content-between">
+          <div class="muted">Subtotal</div>
+          <div id="cartSubtotal">₹0</div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <div class="muted">Shipping</div>
+          <div id="cartShipping">₹0</div>
+        </div>
+        <div class="d-flex justify-content-between total">
+          <div>Total</div>
+          <div id="cartTotal">₹0</div>
+        </div>
+
+        <button class="btn btn-gold w-100 mt-2" id="checkoutBtn">Checkout</button>
+        <button class="btn btn-ghost w-100 mt-2" id="clearCartBtn">Clear Cart</button>
+        <div class="small muted mt-2" id="checkoutStatus"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

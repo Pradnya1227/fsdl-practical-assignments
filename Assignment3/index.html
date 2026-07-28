@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Noor Émeraude — Palace Perfumes</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <!-- Top strip -->
+    <div class="top-strip">
+        <div class="container py-2 d-flex flex-column flex-md-row gap-1 justify-content-between">
+            <div class="small letterwide">FREE SHIPPING ABOVE ₹999</div>
+            <div class="small letterwide">✨ ROYAL DROPS: Attar Noor • Emerald Oud • Jasmine Jali</div>
+        </div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg palace-nav sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center gap-2" href="#">
+                <span class="crest">NE</span>
+                <span class="brand">Noor Émeraude</span>
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="nav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+                    <li class="nav-item"><a class="nav-link" href="#collections">Collections</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#bestsellers">Bestsellers</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#heritage">Heritage</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-ghost" id="openCartBtn" type="button">
+                            Cart <span class="badge-soft" id="cartCount">0</span>
+                        </button>
+                    </li>
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-gold" id="openSearchBtn" type="button">Search</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO: Palace -->
+    <header class="hero">
+        <div class="container">
+            <div class="palace-shell">
+                <div class="palace-jali"></div>
+                <div class="palace-arches">
+                    <div class="arch a1"></div>
+                    <div class="arch a2"></div>
+                    <div class="arch a3"></div>
+                </div>
+
+                <div class="row g-4 align-items-center content">
+                    <div class="col-lg-6">
+                        <p class="kicker">Royal Mughal-inspired perfumery</p>
+                        <h1 class="title">
+                            Deep Emerald <span class="glow">Palace</span> of Scents
+                        </h1>
+                        <p class="sub">
+                            Rich, luxurious blends — citrus courtyards, jasmine halls, and oud chambers.
+                            Crafted to feel like royalty.
+                        </p>
+
+                        <div class="d-flex flex-wrap gap-2 mt-3">
+                            <a class="btn btn-gold btn-lg" href="#bestsellers">Shop Bestsellers</a>
+                            <a class="btn btn-ghost btn-lg" href="#collections">Explore Collections</a>
+                        </div>
+
+                        <div class="mini-stats mt-4">
+                            <div class="mstat">
+                                <div class="mnum">EDP</div>
+                                <div class="mlabel">Long wear</div>
+                            </div>
+                            <div class="mstat">
+                                <div class="mnum">Attar</div>
+                                <div class="mlabel">Oil luxury</div>
+                            </div>
+                            <div class="mstat">
+                                <div class="mnum">4.8★</div>
+                                <div class="mlabel">Loved</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="showcase">
+                            <div class="dome"></div>
+                            <div class="pill">NEW • Limited Edition</div>
+
+                            <div class="bottle b1">
+                                <div class="cap"></div>
+                                <div class="label">
+                                    <div class="lname">Emerald Oud</div>
+                                    <div class="lsub">Eau de Parfum</div>
+                                </div>
+                            </div>
+
+                            <div class="bottle b2">
+                                <div class="cap"></div>
+                                <div class="label">
+                                    <div class="lname">Jasmine Jali</div>
+                                    <div class="lsub">Eau de Parfum</div>
+                                </div>
+                            </div>
+
+                            <div class="gold-line"></div>
+                            <div class="gold-line gl2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inner-border"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Collections -->
+    <section class="section" id="collections">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <h2 class="section-title">Palace Collections</h2>
+                    <p class="section-sub">Choose your hall: citrus, green, floral, oud.</p>
+                </div>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-md-6 col-lg-3">
+                    <div class="royal-card">
+                        <div class="orn">🍋</div>
+                        <h3>Citrus Courtyard</h3>
+                        <p>Bright lemon, bergamot, neroli — sunlit and regal.</p>
+                        <a href="#bestsellers" class="link">Shop →</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="royal-card">
+                        <div class="orn">🌿</div>
+                        <h3>Emerald Garden</h3>
+                        <p>Green tea, basil, fig leaf — fresh like palace gardens.</p>
+                        <a href="#bestsellers" class="link">Shop →</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="royal-card">
+                        <div class="orn">🌸</div>
+                        <h3>Jasmine Hall</h3>
+                        <p>Jasmine, rose, soft musk — rich floral royalty.</p>
+                        <a href="#bestsellers" class="link">Shop →</a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="royal-card">
+                        <div class="orn">🪵</div>
+                        <h3>Oud Chamber</h3>
+                        <p>Oud, amber, cedar — dark, warm, luxurious.</p>
+                        <a href="#bestsellers" class="link">Shop →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bestsellers -->
+    <section class="section section-alt" id="bestsellers">
+        <div class="container">
+            <div class="section-head align-items-end">
+                <div>
+                    <h2 class="section-title">Bestsellers</h2>
+                    <p class="section-sub">Filter by vibe — palace edition.</p>
+                </div>
+
+                <div class="filters">
+                    <div class="input-group input-group-sm palace-input">
+                        <span class="input-group-text">Sort</span>
+                        <select class="form-select" id="sortSelect">
+                            <option value="featured">Featured</option>
+                            <option value="priceLow">Price: Low → High</option>
+                            <option value="priceHigh">Price: High → Low</option>
+                            <option value="rating">Rating</option>
+                        </select>
+                    </div>
+
+                    <div class="btn-group btn-group-sm" role="group">
+                        <button class="btn btn-filter active" data-filter="all">All</button>
+                        <button class="btn btn-filter" data-filter="citrus">Citrus</button>
+                        <button class="btn btn-filter" data-filter="green">Green</button>
+                        <button class="btn btn-filter" data-filter="floral">Floral</button>
+                        <button class="btn btn-filter" data-filter="oud">Oud</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row g-3" id="productGrid"></div>
+        </div>
+    </section>
+
+    <!-- Heritage -->
+    <section class="section" id="heritage">
+        <div class="container">
+            <div class="heritage">
+                <div class="row g-4 align-items-center">
+                    <div class="col-lg-6">
+                        <h2 class="section-title">Heritage</h2>
+                        <p class="section-sub">
+                            Inspired by Mughal arches, jali screens, and emerald domes — translated into scent.
+                        </p>
+                        <ul class="heritage-list">
+                            <li><span class="gem"></span> Dark green + gold “royal” identity</li>
+                            <li><span class="gem"></span> Premium EDP blends + attar style oils</li>
+                            <li><span class="gem"></span> Gift boxes with palace borders</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="heritage-art"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section section-alt" id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-sub">Tell us your taste — citrus, floral, or deep oud.</p>
+
+                    <form class="palace-form" id="contactForm">
+                        <div class="row g-2">
+                            <div class="col-md-6">
+                                <label class="form-label">Name</label>
+                                <input class="form-control" required placeholder="Your name" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Email</label>
+                                <input class="form-control" type="email" required placeholder="you@example.com" />
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-control" rows="4" required
+                                    placeholder="I like rich, woody, long-lasting..."></textarea>
+                            </div>
+                            <div class="col-12 d-flex gap-2 align-items-center">
+                                <button class="btn btn-gold" type="submit">Send</button>
+                                <span class="small muted" id="contactStatus"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="info-panel h-100">
+                        <h3 class="mb-2">Boutique Hours</h3>
+                        <p class="muted mb-3">Mon–Sat • 11 AM – 8 PM</p>
+
+                        <div class="info-rows">
+                            <div class="r">
+                                <div class="k">Address</div>
+                                <div class="v">Emerald Court, Pune</div>
+                            </div>
+                            <div class="r">
+                                <div class="k">Phone</div>
+                                <div class="v">+91 90000 00000</div>
+                            </div>
+                            <div class="r">
+                                <div class="k">Email</div>
+                                <div class="v">hello@nooremeraude.com</div>
+                            </div>
+                        </div>
+
+                        <div class="small muted mt-3">Tip: try discovery set first ✨</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container py-4 d-flex flex-column flex-md-row justify-content-between gap-2">
+            <div class="muted small">© <span id="year"></span> Noor Émeraude</div>
+            <div class="small d-flex gap-3">
+                <a class="footer-link" href="#collections">Collections</a>
+                <a class="footer-link" href="#bestsellers">Shop</a>
+                <a class="footer-link" href="#heritage">Heritage</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Search modal -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content palace-modal">
+                <div class="modal-header">
+                    <h5 class="modal-title">Search perfumes</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input id="searchInput" class="form-control" placeholder="Try: oud, jasmine, lemon..." />
+                    <div class="small muted mt-2">Palace picks: “emerald”, “attar”.</div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-ghost" data-bs-dismiss="modal">Close</button>
+                    <button class="btn btn-gold" id="runSearchBtn">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart offcanvas -->
+    <div class="offcanvas offcanvas-end palace-canvas" tabindex="-1" id="cartCanvas">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Your Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column gap-3">
+            <div id="cartItems" class="d-flex flex-column gap-2"></div>
+
+            <div class="cart-summary mt-auto">
+                <div class="d-flex justify-content-between">
+                    <div class="muted">Subtotal</div>
+                    <div id="cartSubtotal">₹0</div>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <div class="muted">Shipping</div>
+                    <div id="cartShipping">₹0</div>
+                </div>
+                <div class="d-flex justify-content-between total">
+                    <div>Total</div>
+                    <div id="cartTotal">₹0</div>
+                </div>
+
+                <button class="btn btn-gold w-100 mt-2" id="checkoutBtn">Checkout</button>
+                <button class="btn btn-ghost w-100 mt-2" id="clearCartBtn">Clear Cart</button>
+                <div class="small muted mt-2" id="checkoutStatus"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
